@@ -1,0 +1,6 @@
+pandas
+openpyxl
+logging
+re
+statsmodels
+scikit-learn

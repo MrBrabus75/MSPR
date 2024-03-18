@@ -1,0 +1,90 @@
+2024-03-08 21:42:21,063 - INFO - Chargement et prÃ©traitement des donnÃ©es
+2024-03-08 21:42:22,386 - INFO - Nombre de lignes aprÃ¨s filtrage : 110
+2024-03-08 21:42:22,387 - INFO - PrÃ©paration des donnÃ©es pour l'entraÃ®nement
+2024-03-08 21:42:22,391 - INFO - EntraÃ®nement et Ã©valuation du DÃ©mographique
+2024-03-08 21:42:22,501 - INFO - Accuracy du DÃ©mographique: 0.3181818181818182
+2024-03-08 21:42:22,501 - INFO - PrÃ©paration des donnÃ©es pour l'entraÃ®nement
+2024-03-08 21:42:22,506 - INFO - EntraÃ®nement et Ã©valuation du Ã‰conomique
+2024-03-08 21:42:22,840 - INFO - Accuracy du Ã‰conomique: 0.2727272727272727
+2024-03-08 21:42:22,840 - INFO - PrÃ©paration des donnÃ©es pour l'entraÃ®nement
+2024-03-08 21:42:22,844 - INFO - EntraÃ®nement et Ã©valuation du Historique
+2024-03-08 21:42:22,848 - INFO - Accuracy du Historique: 0.22727272727272727
+2024-03-08 21:42:22,870 - INFO - PrÃ©dictions finales pour 2023 Ã  2026 : ['Gauche', 'Gauche', 'Gauche', 'Gauche']
+2024-03-08 21:56:40,321 - INFO - Chargement des données...
+2024-03-08 21:56:41,655 - INFO - Données chargées et filtrées avec succès.
+2024-03-08 21:56:41,655 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:41,660 - INFO - Données préparées avec succès.
+2024-03-08 21:56:41,660 - INFO - Entraînement du modèle : RandomForestClassifier
+2024-03-08 21:56:41,780 - INFO - Accuracy pour RandomForestClassifier: 0.2727272727272727
+2024-03-08 21:56:41,780 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:41,784 - INFO - Données préparées avec succès.
+2024-03-08 21:56:41,784 - INFO - Entraînement du modèle : GradientBoostingClassifier
+2024-03-08 21:56:42,205 - INFO - Accuracy pour GradientBoostingClassifier: 0.45454545454545453
+2024-03-08 21:56:42,205 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:42,209 - INFO - Données préparées avec succès.
+2024-03-08 21:56:42,209 - INFO - Entraînement du modèle : SVC
+2024-03-08 21:56:42,216 - INFO - Accuracy pour SVC: 0.3181818181818182
+2024-03-08 21:56:42,216 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:42,220 - INFO - Données préparées avec succès.
+2024-03-08 21:56:42,220 - INFO - Entraînement du modèle : AdaBoostClassifier
+2024-03-08 21:56:42,299 - INFO - Accuracy pour AdaBoostClassifier: 0.4090909090909091
+2024-03-08 21:56:42,299 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:42,303 - INFO - Données préparées avec succès.
+2024-03-08 21:56:42,303 - INFO - Entraînement du modèle : LogisticRegression
+2024-03-08 21:56:42,309 - INFO - Accuracy pour LogisticRegression: 0.45454545454545453
+2024-03-08 21:56:42,309 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:42,313 - INFO - Données préparées avec succès.
+2024-03-08 21:56:42,313 - INFO - Entraînement du modèle : KNeighborsClassifier
+2024-03-08 21:56:42,328 - INFO - Accuracy pour KNeighborsClassifier: 0.3181818181818182
+2024-03-08 21:56:42,328 - INFO - Modèle: RandomForestClassifier, Accuracy: 0.2727272727272727
+2024-03-08 21:56:42,328 - INFO - Modèle: GradientBoostingClassifier, Accuracy: 0.45454545454545453
+2024-03-08 21:56:42,328 - INFO - Modèle: SVC, Accuracy: 0.3181818181818182
+2024-03-08 21:56:42,328 - INFO - Modèle: AdaBoostClassifier, Accuracy: 0.4090909090909091
+2024-03-08 21:56:42,328 - INFO - Modèle: LogisticRegression, Accuracy: 0.45454545454545453
+2024-03-08 21:56:42,328 - INFO - Modèle: KNeighborsClassifier, Accuracy: 0.3181818181818182
+2024-03-08 21:56:42,328 - INFO - Script d'entraînement et d'évaluation terminé avec succès.
+2024-03-08 21:56:42,328 - INFO - Meilleur modèle pour les prédictions futures: GradientBoostingClassifier avec une précision de 0.45454545454545453
+2024-03-08 21:56:42,328 - INFO - Prédiction avec le modèle : GradientBoostingClassifier
+2024-03-08 21:56:42,329 - INFO - Prédiction pour 2023 dans CHARENTE et CHARENTEMARITIME: Centre
+2024-03-08 21:56:42,329 - INFO - Prédiction pour 2024 dans CHARENTE et CHARENTEMARITIME: Droite
+2024-03-08 21:56:42,329 - INFO - Prédiction pour 2025 dans CHARENTE et CHARENTEMARITIME: Extrême Gauche
+2024-03-08 21:56:42,329 - INFO - Prédiction pour 2026 dans CHARENTE et CHARENTEMARITIME: Gauche
+2024-03-08 21:56:46,725 - INFO - Chargement des données...
+2024-03-08 21:56:47,985 - INFO - Données chargées et filtrées avec succès.
+2024-03-08 21:56:47,985 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:47,990 - INFO - Données préparées avec succès.
+2024-03-08 21:56:47,990 - INFO - Entraînement du modèle : RandomForestClassifier
+2024-03-08 21:56:48,102 - INFO - Accuracy pour RandomForestClassifier: 0.2727272727272727
+2024-03-08 21:56:48,102 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:48,106 - INFO - Données préparées avec succès.
+2024-03-08 21:56:48,106 - INFO - Entraînement du modèle : GradientBoostingClassifier
+2024-03-08 21:56:48,514 - INFO - Accuracy pour GradientBoostingClassifier: 0.45454545454545453
+2024-03-08 21:56:48,514 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:48,518 - INFO - Données préparées avec succès.
+2024-03-08 21:56:48,518 - INFO - Entraînement du modèle : SVC
+2024-03-08 21:56:48,524 - INFO - Accuracy pour SVC: 0.3181818181818182
+2024-03-08 21:56:48,524 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:48,528 - INFO - Données préparées avec succès.
+2024-03-08 21:56:48,528 - INFO - Entraînement du modèle : AdaBoostClassifier
+2024-03-08 21:56:48,602 - INFO - Accuracy pour AdaBoostClassifier: 0.4090909090909091
+2024-03-08 21:56:48,602 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:48,606 - INFO - Données préparées avec succès.
+2024-03-08 21:56:48,606 - INFO - Entraînement du modèle : LogisticRegression
+2024-03-08 21:56:48,611 - INFO - Accuracy pour LogisticRegression: 0.45454545454545453
+2024-03-08 21:56:48,612 - INFO - Préparation des données pour les features : ['18-24_ans', '25-34_ans', '35-49_ans', '50-64_ans', '65_ans_et_plus', 'taux_de_chômage', 'incidents_de_délinquance', 'pib', '%_voix/ins', '%_voix/exp']
+2024-03-08 21:56:48,615 - INFO - Données préparées avec succès.
+2024-03-08 21:56:48,615 - INFO - Entraînement du modèle : KNeighborsClassifier
+2024-03-08 21:56:48,618 - INFO - Accuracy pour KNeighborsClassifier: 0.3181818181818182
+2024-03-08 21:56:48,618 - INFO - Modèle: RandomForestClassifier, Accuracy: 0.2727272727272727
+2024-03-08 21:56:48,619 - INFO - Modèle: GradientBoostingClassifier, Accuracy: 0.45454545454545453
+2024-03-08 21:56:48,619 - INFO - Modèle: SVC, Accuracy: 0.3181818181818182
+2024-03-08 21:56:48,619 - INFO - Modèle: AdaBoostClassifier, Accuracy: 0.4090909090909091
+2024-03-08 21:56:48,619 - INFO - Modèle: LogisticRegression, Accuracy: 0.45454545454545453
+2024-03-08 21:56:48,619 - INFO - Modèle: KNeighborsClassifier, Accuracy: 0.3181818181818182
+2024-03-08 21:56:48,619 - INFO - Script d'entraînement et d'évaluation terminé avec succès.
+2024-03-08 21:56:48,619 - INFO - Meilleur modèle pour les prédictions futures: GradientBoostingClassifier avec une précision de 0.45454545454545453
+2024-03-08 21:56:48,619 - INFO - Prédiction avec le modèle : GradientBoostingClassifier
+2024-03-08 21:56:48,620 - INFO - Prédiction pour 2023 dans CHARENTE et CHARENTEMARITIME: Centre
+2024-03-08 21:56:48,620 - INFO - Prédiction pour 2024 dans CHARENTE et CHARENTEMARITIME: Gauche
+2024-03-08 21:56:48,620 - INFO - Prédiction pour 2025 dans CHARENTE et CHARENTEMARITIME: Extrême Droite
+2024-03-08 21:56:48,620 - INFO - Prédiction pour 2026 dans CHARENTE et CHARENTEMARITIME: Gauche
