@@ -129,8 +129,8 @@ Nouvelle-Aquitaine
 
 ### IA_predict.py
 - Ce script d'intelligence artificielle est conçu pour la prédiction des tendances politiques dans la région Nouvelle-Aquitaine en utilisant des techniques avancées d'analyse de données et de modélisation prédictive
-   - Le script commence par charger un jeu de données depuis un fichier Excel spécifique à la région Nouvelle-Aquitaine.
-   - Les données sont filtrées pour cette région et seul les colonnes numériques sont utilisées pour calculer une matrice de corrélation.
+   - Le script commence par charger un jeu de données depuis un fichier Excel spécifique.
+   - Les données sont filtrées pour cette région (Nouvelle Aquitaine) et seul les colonnes numériques sont utilisées pour calculer une matrice de corrélation.
 
 -Prévision des Caractéristiques Futures:
   - Il utilise le modèle ARIMA pour prédire les valeurs futures de plusieurs caractéristiques démographiques et économiques sur 4 années à venir.
@@ -155,6 +155,8 @@ Résultats
 
 ### Predict_by_llm.py
 - Le script Python predict_by_llm.py implémente une analyse des sentiments exprimés dans des journaux par rapport aux différentes tendances politiques (extrême droite, droite, centre, gauche, extrême gauche).
+
+  - UTILISE UN LARGE LANGUAGE MODEL
 
 résultat complète et réaliste, prenant en compte des journaux exprimant des sentiments neutres, favorables et défavorables pour les élections présidentielles françaises de 2002, 2007, 2012 et 2017 :
 
