@@ -128,133 +128,147 @@ Nouvelle-Aquitaine
 ## Prédiction
 
 ### IA_predict.py
-- Script d'intelligence artificielle pour la prédiction des tendances politiques dans la région Nouvelle-Aquitaine.
+- Ce script d'intelligence artificielle est conçu pour la prédiction des tendances politiques dans la région Nouvelle-Aquitaine en utilisant des techniques avancées d'analyse de données et de modélisation prédictive
+   - Le script commence par charger un jeu de données depuis un fichier Excel spécifique à la région Nouvelle-Aquitaine.
+   - Les données sont filtrées pour cette région et seul les colonnes numériques sont utilisées pour calculer une matrice de corrélation.
 
-### Structure du code
-- Le script procède au chargement, prétraitement, et prédiction des caractéristiques futures, utilisant des modèles ARIMA et de classification pour prédire les tendances politiques.
+-Prévision des Caractéristiques Futures:
+  - Il utilise le modèle ARIMA pour prédire les valeurs futures de plusieurs caractéristiques démographiques et économiques sur 4 années à venir.
 
-### Utilisation
-- Ajustez le chemin vers le fichier de données et exécutez le script pour obtenir les prédictions des tendances politiques futures.
+Préparation des Données pour la Modélisation:
+  - Les données historiques et prévues sont combinées et préparées pour la modélisation. Les classes sont rééquilibrées à l'aide de la technique SMOTE pour améliorer la performance des modèles sur des données déséquilibrées.
 
-### Résultats
-- Le script affiche la précision des modèles et les tendances politiques prédites, avec une précision globale de 68%.
+Configuration et Évaluation des Modèles de Classification:
+  -  Trois modèles de classification sont configurés dans des pipelines qui intègrent des étapes de normalisation, d'imputation, et de réduction de dimensionnalité (PCA).
+  -  Les modèles sont évalués avec une recherche en grille (GridSearchCV) pour optimiser leurs hyperparamètres sur des plis stratifiés.
+  -  Le modèle avec la meilleure performance est sélectionné et utilisé pour faire des prédictions sur les données de test.
+
+Sauvegarde et Prédiction Finale:
+  - Le meilleur modèle est sauvegardé sur le disque.
+  - Ce modèle est ensuite utilisé pour prédire les tendances politiques des années futures en utilisant les caractéristiques démographiques et économiques prévues.
+
+Utilisation
+  - Pour exécuter ce script, assurez-vous que le chemin d'accès au fichier de données Excel est correct et que toutes les bibliothèques nécessaires sont installées. Le script peut être exécuté pour générer des prévisions de tendances politiques, qui sont sauvegardées et affichées à la fin de l'exécution.
+
+Résultats
+ - Le script affiche la matrice de corrélation des caractéristiques, les meilleurs paramètres pour chaque modèle de classification testé, et les performances de ces modèles en termes de précision sur l'ensemble de test. Finalement, il prédit les tendances politiques pour les prochaines années et les affiche, offrant une vision prospective basée sur les données historiques et les prévisions démographiques et économiques. La précision globale obtenue sur l'ensemble de test est de 33.9%, reflétant les défis liés à la prédiction précise des tendances politiques à partir des données disponibles.
 
 ### Predict_by_llm.py
 - Le script Python predict_by_llm.py implémente une analyse des sentiments exprimés dans des journaux par rapport aux différentes tendances politiques (extrême droite, droite, centre, gauche, extrême gauche).
 
 résultat complète et réaliste, prenant en compte des journaux exprimant des sentiments neutres, favorables et défavorables pour les élections présidentielles françaises de 2002, 2007, 2012 et 2017 :
 
-2002 : Droite
+- 2002 : Droite
 
-Journaux favorables :
+- Journaux favorables :
 
     Le Figaro (20/04/2002) : "Jacques Chirac, un nouveau cap pour la France"
     Les Échos (26/04/2002) : "Le monde des affaires salue la réélection de Chirac"
     Valeurs Actuelles (27/04/2002) : "Chirac, garant de la continuité et de la stabilité"
 
-Journaux neutres :
+- Journaux neutres :
 
     Le Monde (22/04/2002) : "Chirac réélu sur un programme de rassemblement"
     Le Parisien (25/04/2002) : "Chirac promet de redresser l'économie et l'emploi"
 
-Journaux défavorables :
+- Journaux défavorables :
 
     Libération (23/04/2002) : "La fracture sociale, défi majeur pour le nouveau mandat"
     L'Humanité (24/04/2002) : "Chirac, un quinquennat pour les riches et les puissants"
 
-Analyse : Malgré des critiques de la part de certains journaux de gauche sur les inégalités, la majorité des journaux soutiennent ou relatent de manière neutre la réélection de Jacques Chirac, reflétant une tendance globalement favorable à la droite lors de cette élection.
+- Analyse : Malgré des critiques de la part de certains journaux de gauche sur les inégalités, la majorité des journaux soutiennent ou relatent de manière neutre la réélection de Jacques Chirac, reflétant une tendance globalement favorable à la droite lors de cette élection.
 
-2007 : Droite
+- 2007 : Droite
 
-Journaux favorables :
+- Journaux favorables :
 
     Le Figaro (07/05/2007) : "Nicolas Sarkozy, un nouveau souffle pour la France"
     Les Échos (12/05/2007) : "Le monde économique applaudit l'élection de Sarkozy"
     Valeurs Actuelles (13/05/2007) : "Sarkozy, l'homme providentiel pour redresser la France"
 
-Journaux neutres :
+- Journaux neutres :
 
     Le Monde (11/05/2007) : "Sarkozy promet des réformes ambitieuses"
     Le Parisien (08/05/2007) : "Sarkozy élu, la rupture est en marche"
 
-Journaux défavorables :
+- Journaux défavorables :
 
     L'Humanité (09/05/2007) : "Sarkozy, un président des riches et des puissants"
     Libération (10/05/2007) : "Sarkozy, un virage à droite toute pour la France"
 
-Analyse : Bien que quelques journaux de gauche s'opposent au programme de Nicolas Sarkozy, la plupart des journaux, y compris des titres neutres, soutiennent son élection et ses promesses de réformes, confirmant une nette tendance en faveur de la droite.
+- Analyse : Bien que quelques journaux de gauche s'opposent au programme de Nicolas Sarkozy, la plupart des journaux, y compris des titres neutres, soutiennent son élection et ses promesses de réformes, confirmant une nette tendance en faveur de la droite.
 
-2012 : Gauche
+- 2012 : Gauche
 
-Journaux favorables :
+- Journaux favorables :
 
     Libération (07/05/2012) : "François Hollande, un espoir pour la gauche"
     L'Humanité (10/05/2012) : "Hollande, une victoire pour le peuple et les travailleurs"
     Le Parisien (11/05/2012) : "Hollande promet de relancer la croissance et l'emploi"
 
-Journaux neutres :
+- Journaux neutres :
 
     Le Monde (08/05/2012) : "Hollande élu, la fin de l'austérité ?"
     Marianne (14/05/2012) : "Hollande, entre espoirs et défis"
 
-Journaux défavorables :
+- Journaux défavorables :
 
     Le Figaro (09/05/2012) : "Hollande, un virage à gauche risqué pour la France"
     Les Échos (12/05/2012) : "Le monde économique inquiet des promesses de Hollande"
     Valeurs Actuelles (13/05/2012) : "Hollande, un danger pour la France"
 
-Analyse : Malgré les réserves exprimées par la presse conservatrice et économique, de nombreux journaux, à la fois de gauche et neutres, soutiennent l'élection de François Hollande et son programme, reflétant une tendance claire en faveur de la gauche lors de ce scrutin.
+- Analyse : Malgré les réserves exprimées par la presse conservatrice et économique, de nombreux journaux, à la fois de gauche et neutres, soutiennent l'élection de François Hollande et son programme, reflétant une tendance claire en faveur de la gauche lors de ce scrutin.
 
-2017 : Centre
+- 2017 : Centre
 
-Journaux favorables :
+- Journaux favorables :
 
     Le Monde (08/05/2017) : "Emmanuel Macron, un nouveau souffle pour la France"
     Les Échos (14/05/2017) : "Le monde économique salue l'élection de Macron"
 
-Journaux neutres :
+- Journaux neutres :
 
     L'Obs (10/05/2017) : "Macron, entre espoirs et défis"
     Le Parisien (13/05/2017) : "Macron promet de réformer en profondeur le pays"
     Marianne (16/05/2017) : "Macron, un président atypique pour des temps incertains"
 
-Journaux défavorables :
+- Journaux défavorables :
 
     Le Figaro (09/05/2017) : "Macron, un pari risqué pour la France"
     Libération (11/05/2017) : "Macron, une opportunité à saisir pour la gauche"
     L'Humanité (12/05/2017) : "Macron, un président des riches et des puissants"
     Valeurs Actuelles (15/05/2017) : "Macron, un virage dangereux pour la France"
 
-Analyse : L'élection d'Emmanuel Macron suscite des réactions très partagées, avec des journaux favorables à son projet de renouveau, d'autres neutres ou nuancés, et d'autres enfin très critiques, tant à gauche qu'à droite. Dans l'ensemble, l'analyse ne révèle pas de tendance franche, reflétant bien le positionnement central et rassembleur du candidat.
+- Analyse : L'élection d'Emmanuel Macron suscite des réactions très partagées, avec des journaux favorables à son projet de renouveau, d'autres neutres ou nuancés, et d'autres enfin très critiques, tant à gauche qu'à droite. Dans l'ensemble, l'analyse ne révèle pas de tendance franche, reflétant bien le positionnement central et rassembleur du candidat.
 
 
 
 
-Le script Python predict_by_llm.py implémente une analyse des sentiments exprimés dans des journaux par rapport aux différentes tendances politiques (extrême droite, droite, centre, gauche, extrême gauche). Voici les principales étapes :
+- Le script Python predict_by_llm.py implémente une analyse des sentiments exprimés dans des journaux par rapport aux différentes tendances politiques (extrême droite, droite, centre, gauche, extrême gauche). Voici les principales étapes :
 
-    Initialisation : Le script commence par importer les bibliothèques nécessaires, initialiser l'API Claude et définir les catégories politiques à analyser.
-    Prompt et réglages : Un prompt personnalisé est défini pour guider l'analyse de Claude. Des réglages comme la température, la longueur de réponse et les séquences d'arrêt sont également spécifiés.
-    Boucle d'analyse : Pour chaque fichier journal dans le répertoire spécifié, le script :
-        Lit le contenu du fichier
-        Construit un prompt complet en concaténant le prompt initial et le contenu du fichier
-        Envoie le prompt complet à l'API Claude pour obtenir une analyse des sentiments
-        Convertit la réponse de Claude en un dictionnaire avec les sentiments pour chaque catégorie politique
-        Classe les résultats de l'analyse dans un dictionnaire global
-    Création du DataFrame : Après avoir analysé tous les fichiers, le script crée un DataFrame Pandas à partir du dictionnaire de résultats.
-    Mapping des sentiments : Les valeurs numériques représentant les sentiments sont remplacées par des étiquettes lisibles ("Neutre", "Pour", "Contre").
-    Export Excel : Enfin, le DataFrame est exporté dans un fichier Excel pour une visualisation facile des résultats.
+   - Initialisation : Le script commence par importer les bibliothèques nécessaires, initialiser l'API Claude et définir les catégories politiques à analyser.
+   - Prompt et réglages : Un prompt personnalisé est défini pour guider l'analyse de Claude. Des réglages comme la température, la longueur de réponse et les séquences d'arrêt sont également spécifiés.
+   - Boucle d'analyse : Pour chaque fichier journal dans le répertoire spécifié, le script :
+       - Lit le contenu du fichier
+       - Construit un prompt complet en concaténant le prompt initial et le contenu du fichier
+       - Envoie le prompt complet à l'API Claude pour obtenir une analyse des sentiments
+       - Convertit la réponse de Claude en un dictionnaire avec les sentiments pour chaque catégorie politique
+       - Classe les résultats de l'analyse dans un dictionnaire global
+    - Création du DataFrame : Après avoir analysé tous les fichiers, le script crée un DataFrame Pandas à partir du dictionnaire de résultats.
+    - Mapping des sentiments : Les valeurs numériques représentant les sentiments sont remplacées par des étiquettes lisibles ("Neutre", "Pour", "Contre").
+    - Export Excel : Enfin, le DataFrame est exporté dans un fichier Excel pour une visualisation facile des résultats.
 
-Les résultats
+- Les résultats
+ 
+- Les résultats détaillés pour les élections présidentielles de 2002, 2007, 2012 et 2017, en incluant des journaux exprimant des sentiments favorables, neutres et défavorables pour chaque tendance politique.
 
-Les résultats détaillés pour les élections présidentielles de 2002, 2007, 2012 et 2017, en incluant des journaux exprimant des sentiments favorables, neutres et défavorables pour chaque tendance politique.
-
-Pour chaque élection, l'analyse fournit :
+- Pour chaque élection, l'analyse fournit :
 
     Une liste de journaux favorables, neutres et défavorables avec des extraits de titres et d'articles
     Une analyse narrative qui synthétise les tendances générales observées dans les journaux
 
-Par exemple, pour 2002, l'analyse indique une tendance globalement favorable à Jacques Chirac et à la droite, malgré des critiques de certains journaux de gauche sur les inégalités.
+- Par exemple, pour 2002, l'analyse indique une tendance globalement favorable à Jacques Chirac et à la droite, malgré des critiques de certains journaux de gauche sur les inégalités.
 
-Pour 2017, l'analyse souligne des réactions très partagées envers Emmanuel Macron, reflétant son positionnement central et rassembleur.
+- Pour 2017, l'analyse souligne des réactions très partagées envers Emmanuel Macron, reflétant son positionnement central et rassembleur.
 
-Cette simulation vise à illustrer comment le script pourrait analyser de manière réaliste et nuancée les sentiments exprimés dans les médias lors d'élections majeures, en capturant la diversité des opinions politiques.
+- Cette simulation vise à illustrer comment le script pourrait analyser de manière réaliste et nuancée les sentiments exprimés dans les médias lors d'élections majeures, en capturant la diversité des opinions politiques.
