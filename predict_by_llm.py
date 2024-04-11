@@ -1,76 +1,62 @@
 import os
+import weaviate
 import pandas as pd
-from typing import Dict
-from claude_api import ClaudeAPI
+from openai import OpenAI
+from datetime import datetime
 
-# Initialisation de l'API Claude
-claude = ClaudeAPI(api_key="your_api_key")
+# Configuration de l'API OpenAI
+api_key = 'votre_clé_api_openai'
+openai_client = OpenAI(api_key=api_key)
 
-# Répertoire contenant les journaux
-news_dir = "/home/gptlab/news"
+# Configuration de la base de données Weaviate
+weaviate_client = weaviate.Client("http://localhost:8080")
 
-# Catégories politiques à analyser
-political_categories = ["Extrême droite", "Droite", "Centre", "Gauche", "Extrême gauche"]
+# Dossier contenant les articles de journaux
+news_directory = "/home/weaviate/db_news"
 
-# Prompt pour l'analyse des journaux
-prompt = f"""
-Analyse le contenu suivant et détermine s'il exprime un sentiment neutre, en faveur ou contre les différentes catégories politiques suivantes : {', '.join(political_categories)}.
+# Spectres politiques analysés
+political_spectrums = ["Extrême droite", "Droite", "Centre", "Gauche", "Extrême gauche"]
 
-Réponds avec un dictionnaire Python où les clés sont les catégories politiques et les valeurs sont 1 pour un sentiment neutre, 2 pour un sentiment en faveur et 3 pour un sentiment contre.
+# Initialiser DataFrame pour les résultats
+columns = ["Filename", "Excerpt", "Extrême droite", "Droite", "Centre", "Gauche", "Extrême gauche"]
+results_df = pd.DataFrame(columns=columns)
 
-Par exemple :
-{{
-    "Extrême droite": 2,
-    "Droite": 1,
-    "Centre": 3,
-    "Gauche": 1,
-    "Extrême gauche": 2
-}}
+# Fonction pour demander à ChatGPT de classifier un texte
+def classify_text(text, spectrum):
+    prompt = f"Concernant les élections françaises, est-ce que cet article est pour, contre, ou neutre envers {spectrum}? Réponse: 1 = Neutre, 2 = Pour, 3 = Contre.\n\n{text}"
+    response = openai_client.Completion.create(
+        model="text-davinci-003",  # Assurez-vous d'utiliser le dernier modèle disponible
+        prompt=prompt,
+        max_tokens=50
+    )
+    return response.choices[0].text.strip()
 
-Contenu :
-"""
+# Lire tous les fichiers de journal dans le dossier spécifié
+for filename in os.listdir(news_directory):
+    if filename.endswith(".txt"):  # Assurer que seuls les fichiers .txt sont traités
+        with open(os.path.join(news_directory, filename), 'r', encoding='utf-8') as file:
+            content = file.read()
 
-# Réglages pour l'API Claude
-settings = {
-    "temperature": 0.2,  # Contrôle la créativité de la réponse
-    "max_tokens": 124000,  # Longueur maximale de la réponse
-    "stop_sequences": ["Contenu :"]  # Séquences pour arrêter la réponse
-}
+        # Obtenir les embeddings du texte (optionnel, pour améliorer la gestion des données)
+        try:
+            weaviate_client.data_object.create(
+                data_object={"text": content},
+                class_name="Article"
+            )
+        except Exception as e:
+            print(f"Erreur lors de l'insertion dans Weaviate: {e}")
 
-# Dictionnaire pour stocker les résultats
-results: Dict[str, list] = {category: [] for category in political_categories}
+        # Classifier le texte pour chaque spectre politique
+        results = [filename, content[:100] + "..."]  # Sauvegarder l'extrait du contenu
+        for spectrum in political_spectrums:
+            sentiment = classify_text(content, spectrum)
+            results.append(sentiment)
+        
+        # Ajouter les résultats dans le DataFrame
+        results_df.loc[len(results_df)] = results
 
-# Parcourir tous les fichiers dans le répertoire
-for filename in os.listdir(news_dir):
-    filepath = os.path.join(news_dir, filename)
-    
-    # Ouvrir le fichier et lire son contenu
-    with open(filepath, "r") as file:
-        content = file.read()
-    
-    # Construire le prompt complet avec le contenu du fichier
-    full_prompt = prompt + content
-    
-    # Envoyer le prompt à l'API Claude pour l'analyser
-    analysis = claude.complete(full_prompt, settings)
-    
-    try:
-        # Convertir la réponse de Claude en dictionnaire
-        analysis_dict = eval(analysis.choices[0].text)
-    except (ValueError, SyntaxError):
-        print(f"Erreur lors de l'analyse du fichier {filename}")
-        continue
-    
-    # Classer l'analyse dans les résultats
-    for category, sentiment in analysis_dict.items():
-        results[category].append(sentiment)
+# Sauvegarde des résultats dans un fichier Excel
+output_filename = f"results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+results_df.to_excel(output_filename, index=False)
 
-# Créer un DataFrame Pandas à partir des résultats
-df = pd.DataFrame(results)
-
-# Mapper les valeurs numériques aux étiquettes de sentiment
-sentiment_labels = {1: "Neutre", 2: "Pour", 3: "Contre"}
-df = df.replace(sentiment_labels)
-
-# Enregistrer le DataFrame dans un fichier Excel
-df.to_excel("news_analysis.xlsx", index=False)
+print(f"Les résultats ont été sauvegardés dans {output_filename}")
