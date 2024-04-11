@@ -1,5 +1,5 @@
 ## Objectif
-![alt text]([http://url/to/img.png](https://raw.githubusercontent.com/MrBrabus75/MSPR/master/DALL%C2%B7E%202024-04-11%2011.33.34%20-%20Logo%20design%20for%20'Elexxion'%2C%20an%20innovative%20startup%20using%20artificial%20intelligence%20to%20predict%20electoral%20campaign%20trends.%20The%20logo%20should%20feature%20the%20comp.webp))
+![alt text](https://raw.githubusercontent.com/MrBrabus75/MSPR/master/DALL%C2%B7E%202024-04-11%2011.33.34%20-%20Logo%20design%20for%20'Elexxion'%2C%20an%20innovative%20startup%20using%20artificial%20intelligence%20to%20predict%20electoral%20campaign%20trends.%20The%20logo%20should%20feature%20the%20comp.webp))
 Ce pipeline de traitement des données a été conçu pour transformer des données brutes en un ensemble structuré, normalisé et enrichi, prêt pour des analyses avancées. Il assure la qualité et la cohérence des données à travers plusieurs étapes de transformation.
 
 ## Composantes du Pipeline
