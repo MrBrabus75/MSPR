@@ -182,12 +182,10 @@ Résultats
     - Sauvegarde Excel:
         - Les résultats sont sauvegardés dans un DataFrame puis exportés dans un fichier Excel avec un timestamp pour éviter l'écrasement des fichiers précédents.
      
-  | Candidat          | Nom du Journal | Titre du journal                                           | Sous-titre du journal                                                                          | Pour / Contre / Neutre | Réccurence |
+| Candidat          | Nom du Journal | Titre du journal                                           | Sous-titre du journal                                                                          | Pour / Contre / Neutre | Réccurence |
 |-------------------|----------------|------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------|------------|
 | Marine Le Pen     | Le Monde       | Sur l’international, la délicate présidentialisation de Marine Le Pen | Si la leader d’extrême droite revendique d’incarner la future cheffe de l’État, elle se montre discrète sur l’Ukraine. | Neutre                 | 2          |
 | Emmanuel Macron   | Le Figaro      | Macron et les défis de la diplomatie française             | En pleine crise ukrainienne, le président cherche à renforcer la stature internationale de la France. | Pour                   | 1          |
 | Jean-Luc Mélenchon| Libération     | Mélenchon, le tribun qui veut renverser Macron             | Le leader de la France insoumise propose un programme radicalement opposé à celui du président sortant. | Contre                 | 3          |
 | Éric Zemmour      | France Soir    | Éric Zemmour face aux médias                               | Le candidat de la droite extrême s’attaque à la presse, qu’il juge trop bienveillante envers Macron.   | Contre                 | 2          |
 | Yannick Jadot     | L'Écho         | Jadot et l'urgence climatique                              | Le candidat écologiste met le climat au cœur de sa campagne présidentielle.                       | Pour                   | 1          |
-
-
