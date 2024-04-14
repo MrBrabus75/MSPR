@@ -127,9 +127,39 @@ Utilisation
 
 Résultats
  - Le script affiche la matrice de corrélation des caractéristiques, les meilleurs paramètres pour chaque modèle de classification testé, et les performances de ces modèles en termes de précision sur l'ensemble de test. Finalement, il prédit les tendances politiques pour les prochaines années et les affiche, offrant une vision prospective basée sur les données historiques et les prévisions démographiques et économiques. La précision globale obtenue sur l'ensemble de test est de 33.9%, reflétant les défis liés à la prédiction précise des tendances politiques à partir des données disponibles.
-![alt text](https://github.com/MrBrabus75/MSPR/blob/master/resultats_elections_france_entiere.png)
-![alt text](https://github.com/MrBrabus75/MSPR/blob/master/resultats_elections_charente.png)
-![alt text](https://github.com/MrBrabus75/MSPR/blob/master/predicted_political_trends_nouvelle_aquitaine.png)
+
+- France entière :
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2007%20t1.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2007%20t2.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2012%20t1.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2012%20t2.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2017%20t1.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2017%20t2.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2022%20t1.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/2022%20t2.png)
+
+- Nouvelle Aquitaine :
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/NA%202007.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/NA%202012.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/NA%202017.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/NA%202022.png)
+
+- Prédiction :
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/NA.png)
+![alt text](https://github.com/MrBrabus75/MSPR/blob/master/NA2.png)
+
+| Années | Région             | Élu           |
+|--------|--------------------|---------------|
+| 2007   | Nouvelle-Aquitaine | Gauche        |
+| 2012   | Nouvelle-Aquitaine | Gauche        |
+| 2017   | Nouvelle-Aquitaine | Centre        |
+| 2022   | Nouvelle-Aquitaine | Centre        |
+| 2023   | Nouvelle-Aquitaine | Centre        |
+| 2024   | Nouvelle-Aquitaine | Droite        |
+| 2025   | Nouvelle-Aquitaine | Droite        |
+| 2026   | Nouvelle-Aquitaine | Extrême Droite|
+| 2027   | Nouvelle-Aquitaine | Extrême Droite|
+
 
 ### Predict_by_llm.py
 - Un script Python détaillé et réaliste nommé predict_by_llm.py, qui analyse les sentiments exprimés dans des articles de journaux sur les élections présidentielles françaises et les classe par tendance politique, nous allons utiliser l'API de ChatGPT d'OpenAI, un modèle d'embedding pour le traitement de texte, et Weaviate, une base de données vectorielle pour stocker et rechercher les données. Le script classera les sentiments comme neutres, pour, ou contre, pour cinq spectres politiques (extrême droite, droite, centre, gauche, extrême gauche) et sauvegardera les résultats dans un fichier Excel.
@@ -151,4 +181,13 @@ Résultats
 
     - Sauvegarde Excel:
         - Les résultats sont sauvegardés dans un DataFrame puis exportés dans un fichier Excel avec un timestamp pour éviter l'écrasement des fichiers précédents.
-![alt text](https://github.com/MrBrabus75/MSPR/blob/master/diagram(2).png)
+     
+  | Candidat          | Nom du Journal | Titre du journal                                           | Sous-titre du journal                                                                          | Pour / Contre / Neutre | Réccurence |
+|-------------------|----------------|------------------------------------------------------------|------------------------------------------------------------------------------------------------|------------------------|------------|
+| Marine Le Pen     | Le Monde       | Sur l’international, la délicate présidentialisation de Marine Le Pen | Si la leader d’extrême droite revendique d’incarner la future cheffe de l’État, elle se montre discrète sur l’Ukraine. | Neutre                 | 2          |
+| Emmanuel Macron   | Le Figaro      | Macron et les défis de la diplomatie française             | En pleine crise ukrainienne, le président cherche à renforcer la stature internationale de la France. | Pour                   | 1          |
+| Jean-Luc Mélenchon| Libération     | Mélenchon, le tribun qui veut renverser Macron             | Le leader de la France insoumise propose un programme radicalement opposé à celui du président sortant. | Contre                 | 3          |
+| Éric Zemmour      | France Soir    | Éric Zemmour face aux médias                               | Le candidat de la droite extrême s’attaque à la presse, qu’il juge trop bienveillante envers Macron.   | Contre                 | 2          |
+| Yannick Jadot     | L'Écho         | Jadot et l'urgence climatique                              | Le candidat écologiste met le climat au cœur de sa campagne présidentielle.                       | Pour                   | 1          |
+
+
