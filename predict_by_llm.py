@@ -1,62 +1,80 @@
-import os
 import weaviate
+import openai
 import pandas as pd
-from openai import OpenAI
-from datetime import datetime
 
 # Configuration de l'API OpenAI
-api_key = 'votre_clé_api_openai'
-openai_client = OpenAI(api_key=api_key)
+openai.api_key = 'votre_clé_API'
 
-# Configuration de la base de données Weaviate
-weaviate_client = weaviate.Client("http://localhost:8080")
+# Connexion à la base de données Weaviate locale
+client = weaviate.Client("http://localhost:8080")
 
-# Dossier contenant les articles de journaux
-news_directory = "/home/weaviate/db_news"
-
-# Spectres politiques analysés
-political_spectrums = ["Extrême droite", "Droite", "Centre", "Gauche", "Extrême gauche"]
-
-# Initialiser DataFrame pour les résultats
-columns = ["Filename", "Excerpt", "Extrême droite", "Droite", "Centre", "Gauche", "Extrême gauche"]
-results_df = pd.DataFrame(columns=columns)
-
-# Fonction pour demander à ChatGPT de classifier un texte
-def classify_text(text, spectrum):
-    prompt = f"Concernant les élections françaises, est-ce que cet article est pour, contre, ou neutre envers {spectrum}? Réponse: 1 = Neutre, 2 = Pour, 3 = Contre.\n\n{text}"
-    response = openai_client.Completion.create(
-        model="text-davinci-003",  # Assurez-vous d'utiliser le dernier modèle disponible
-        prompt=prompt,
-        max_tokens=50
+# Fonction pour utiliser ChatGPT
+def ask_chatgpt(prompt):
+    response = openai.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": prompt}]
     )
-    return response.choices[0].text.strip()
+    return response['choices'][0]['message']['content']
 
-# Lire tous les fichiers de journal dans le dossier spécifié
-for filename in os.listdir(news_directory):
-    if filename.endswith(".txt"):  # Assurer que seuls les fichiers .txt sont traités
-        with open(os.path.join(news_directory, filename), 'r', encoding='utf-8') as file:
-            content = file.read()
+# Fonction pour déterminer la position par rapport au candidat
+def determine_position(text):
+    sentiment_prompt = f"Déterminez si ce texte est pour, contre ou neutre par rapport au candidat: {text}"
+    position = ask_chatgpt(sentiment_prompt)
+    return position.strip()
 
-        # Obtenir les embeddings du texte (optionnel, pour améliorer la gestion des données)
-        try:
-            weaviate_client.data_object.create(
-                data_object={"text": content},
-                class_name="Article"
-            )
-        except Exception as e:
-            print(f"Erreur lors de l'insertion dans Weaviate: {e}")
+# Extraction des données depuis Weaviate
+def extract_data():
+    query = """
+    {
+      Get {
+        Article (limit: 1000000) {
+          title
+          subtitle
+          source {
+            name
+          }
+          content
+        }
+      }
+    }
+    """
+    result = client.query.raw(query)
+    return result['data']['Get']['Article']
 
-        # Classifier le texte pour chaque spectre politique
-        results = [filename, content[:100] + "..."]  # Sauvegarder l'extrait du contenu
-        for spectrum in political_spectrums:
-            sentiment = classify_text(content, spectrum)
-            results.append(sentiment)
+def analyze_articles(articles):
+    data = []
+    for article in articles:
+        title = article['title']
+        subtitle = article['subtitle'] if 'subtitle' in article else ""
+        journal_name = article['source']['name']
         
-        # Ajouter les résultats dans le DataFrame
-        results_df.loc[len(results_df)] = results
+        # Extraire les noms des candidats et déterminer la position
+        extract_names_prompt = f"Listez tous les noms de candidats mentionnés dans ce texte: {title} {subtitle}"
+        candidates = ask_chatgpt(extract_names_prompt).split(',')
+        candidates = [name.strip() for name in candidates if name.strip()]
+        
+        # Déterminer la position pour chaque candidat
+        for candidate in candidates:
+            position = determine_position(f"{title} {subtitle}")
+            data.append({
+                "Candidat": candidate,
+                "Nom du Journal": journal_name,
+                "Titre du journal": title,
+                "Sous-titre du journal": subtitle,
+                "Pour / Contre / Neutre": position
+            })
 
-# Sauvegarde des résultats dans un fichier Excel
-output_filename = f"results_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
-results_df.to_excel(output_filename, index=False)
+    return pd.DataFrame(data)
 
-print(f"Les résultats ont été sauvegardés dans {output_filename}")
+def save_to_excel(df):
+    # Calculer la récurrence
+    df['Réccurence'] = df.groupby(['Candidat', 'Nom du Journal', 'Pour / Contre / Neutre'])['Titre du journal'].transform('count')
+    # Suppression des doublons
+    df = df.drop_duplicates()
+    # Écriture dans un fichier Excel
+    df.to_excel("analyse_journal_elections.xlsx", index=False)
+
+# Exécution des fonctions
+articles = extract_data()
+df = analyze_articles(articles)
+save_to_excel(df)
